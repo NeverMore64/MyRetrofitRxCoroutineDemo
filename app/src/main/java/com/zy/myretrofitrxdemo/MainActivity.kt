@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
+import com.yishi.yszf.screenadapter.generator.DimenGenerator
 import com.zy.myretrofitrxdemo.model.Repo
+import com.zy.myretrofitrxdemo.screenadapter.utils.MakeUtils
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleObserver
@@ -53,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // retrofit方式请求
-//        api.listRepos("rengwuxian")
+//        api.listRepos("NeverMore64")
 //                .enqueue(object : Callback<List<Repo>> {
 //                    override fun onFailure(call: Call<List<Repo>>, t: Throwable) {
 //                    }
@@ -77,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         // kotlin协程方式请求
 //        GlobalScope.launch(Dispatchers.Main) {
 //            try {
-//                val repos: List<Repo> = api.listReposKt("rengwuxian")
+//                val repos: List<Repo> = api.listReposKt("NeverMore64")
 //                textView.text = repos[0].name + "-kt"
 //            } catch (e: Exception) {
 //                textView.text = e.message
@@ -86,17 +88,16 @@ class MainActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.Main) {
             // async也是一个协程
-            val rengwuxian = async { api.listReposKt("NeverMore64") }
+            val neverMore = async { api.listReposKt("NeverMore64") }
             // await 是一个挂起函数（保证把任务结果都返回主线程）
-//            rengwuxian.await()[0].name
+//            neverMore.await()[0].name
             val google = async { api.listReposKt("google") }
-            textView.text = "${rengwuxian.await()[0].name} + ${google.await()[0].name}"
+            textView.text = "${neverMore.await()[0].name} + ${google.await()[0].name}"
         }
-
         // 协程取消
 //        scope.launch {
 //            try {
-//                val repos: List<Repo> = api.listReposKt("rengwuxian")
+//                val repos: List<Repo> = api.listReposKt("NeverMore64")
 //                textView.text = repos[0].name + "-kt"
 //            } catch (e: Exception) {
 //                textView.text = e.message
@@ -105,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 
 //        lifecycleScope.launch(Dispatchers.Main) {
 //            try {
-//                val repos: List<Repo> = api.listReposKt("rengwuxian")
+//                val repos: List<Repo> = api.listReposKt("NeverMore64")
 //                textView.text = repos[0].name + "-kt"
 //            } catch (e: Exception) {
 //                textView.text = e.message
@@ -115,7 +116,7 @@ class MainActivity : AppCompatActivity() {
 
         // rxJava方式请求
         // rxJava 被用来：1.并发任务的处理 2. 管理事件流
-//        api.listReposRx("rengwuxian").subscribeOn(Schedulers.io())
+//        api.listReposRx("NeverMore64").subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe(object : SingleObserver<List<Repo>> {
 //                    override fun onSuccess(repos: List<Repo>) {
@@ -133,7 +134,7 @@ class MainActivity : AppCompatActivity() {
 //                })
 
 //        Single.zip<List<Repo>, List<Repo>, String>(
-//                api.listReposRx("rengwuxian"),
+//                api.listReposRx("NeverMore64"),
 //                api.listReposRx("google"),
 //                BiFunction { repos1, repos2 -> "${repos1[0].name} - ${repos2[0].name}" }
 //        ).observeOn(AndroidSchedulers.mainThread())
