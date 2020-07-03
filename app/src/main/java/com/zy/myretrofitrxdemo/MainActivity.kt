@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
-import com.yishi.yszf.screenadapter.generator.DimenGenerator
 import com.zy.myretrofitrxdemo.model.Repo
 import com.zy.myretrofitrxdemo.screenadapter.utils.MakeUtils
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers

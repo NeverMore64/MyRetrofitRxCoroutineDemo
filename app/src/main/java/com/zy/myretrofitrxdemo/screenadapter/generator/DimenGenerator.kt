@@ -1,4 +1,4 @@
-package com.yishi.yszf.screenadapter.generator
+package com.zy.myretrofitrxdemo.screenadapter.generator
 
 import com.zy.myretrofitrxdemo.screenadapter.constants.DimenTypes
 import com.zy.myretrofitrxdemo.screenadapter.utils.MakeUtils
